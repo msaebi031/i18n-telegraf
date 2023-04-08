@@ -28,7 +28,7 @@ Example directory structure:
 
 en.yaml :
 
-```js
+```yaml
 welcome: Welcome To Bot
 ```
 
@@ -123,9 +123,9 @@ If you have a text that needs to be changed, use the section below
 
 en.yaml :
 
-```js
+```yaml
 welcome: Welcome ${name} To Bot
-test : has a ${test}
+test: has a ${test}
 ```
 
 ```js
