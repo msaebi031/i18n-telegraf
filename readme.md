@@ -6,13 +6,13 @@
 
 Internationalization middleware for [Telegraf](https://www.npmjs.com/package/telegraf).
 
+# !!! In the current version, it only works on yaml and has an error on json
+
 ## Installation
 
 ```js
 $ npm i i18n-telegraf
 ```
-
-# !!! In the current version, it only works on yaml and has an error on json
 
 ## Example
 
@@ -33,6 +33,8 @@ en.yaml :
 ```js
 welcome: Welcome To Bot
 ```
+
+index.js
 
 ```js
 import { Telegraf } from "telegraf";
