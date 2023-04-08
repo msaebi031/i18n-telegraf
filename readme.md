@@ -28,19 +28,15 @@ Example directory structure:
 */
 ```
 
-```js
-import { Telegraf, session } from "telegraf";
-import TelegrafI18n from "i18n-telegraf";
+en.yaml :
 
-/* 
-yaml are ok
-Example directory structure:
-├── locales
-│   ├── en.yaml
-│   ├── en-US.yaml
-│   └── fa.yaml
-└── bot.js
-*/
+```js
+welcome: Welcome To Bot
+```
+
+```js
+import { Telegraf } from "telegraf";
+import TelegrafI18n from "i18n-telegraf";
 
 const app = new Telegraf(process.env.BOT_TOKEN);
 
@@ -48,6 +44,41 @@ const i18n = new TelegrafI18n({
   defaultLanguage: "en",
   allowMissing: false, // Default true
   directory: path.resolve(__dirname, "locales"),
+});
+
+app.use(i18n.middleware());
+
+app.hears("/start", (ctx) => {
+  const message = ctx.i18n.t("welcome");
+  return ctx.reply(message);
+});
+```
+
+## Example with Session
+
+Session used : https://www.npmjs.com/package/@telegraf/session
+
+```js
+import { Telegraf, session } from "telegraf";
+import TelegrafI18n from "i18n-telegraf";
+// session
+import { MySQL } from "@telegraf/session/mysql";
+
+const app = new Telegraf(process.env.BOT_TOKEN);
+
+const store = MySQL({
+  host: "localhost",
+  database: process.env.USER_DATA,
+  user: process.env.NAME_DATA,
+  password: process.env.PASSWORD_DATA,
+});
+
+app.use(session({ store, defaultSession: () => ({ __language_code: "en" }) }));
+
+const i18n = new TelegrafI18n({
+  directory: "locales",
+  sessionName: "session",
+  useSession: true,
 });
 
 app.use(i18n.middleware());
