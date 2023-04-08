@@ -12,9 +12,21 @@ Internationalization middleware for [Telegraf](https://www.npmjs.com/package/tel
 $ npm i i18n-telegraf
 ```
 
-# !!!In the current version, it only works on yaml and has an error on json
+# !!! In the current version, it only works on yaml and has an error on json
 
 ## Example
+
+```js
+/* 
+yaml are ok
+Example directory structure:
+├── locales
+│   ├── en.yaml
+│   ├── en-US.yaml
+│   └── fa.yaml
+└── bot.js
+*/
+```
 
 ```js
 import { Telegraf, session } from "telegraf";
@@ -26,25 +38,22 @@ Example directory structure:
 ├── locales
 │   ├── en.yaml
 │   ├── en-US.yaml
-│   └── ru.yaml
+│   └── fa.yaml
 └── bot.js
 */
+
 const app = new Telegraf(process.env.BOT_TOKEN);
 
-//
 const i18n = new TelegrafI18n({
   defaultLanguage: "en",
   allowMissing: false, // Default true
   directory: path.resolve(__dirname, "locales"),
 });
 
-// Also you can provide i18n data directly
-i18n.loadLocale("en", { greeting: "Hello!" });
-
 app.use(i18n.middleware());
 
 app.hears("/start", (ctx) => {
-  const message = ctx.i18n.t("greeting");
+  const message = ctx.i18n.t("welcome");
   return ctx.reply(message);
 });
 ```
