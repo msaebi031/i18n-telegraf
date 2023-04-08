@@ -1,0 +1,55 @@
+{
+  "name": "i18n-telegraf",
+  "version": "8.5.0",
+  "description": "Telegraf i18n engine",
+  "main": "lib/i18n.js",
+  "types": "lib/index.d.ts",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/msaebi031/i18n-telegraf.git"
+  },
+  "keywords": [
+    "telegram bot",
+    "telegraf",
+    "bot framework",
+    "i18n",
+    "internationalization",
+    "middleware",
+    "multilanguage"
+  ],
+  "author": "Mr_artan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/msaebi031/i18n-telegraf/issues"
+  },
+  "homepage": "https://github.com/msaebi031/i18n-telegraf#readme",
+  "engines": {
+    "node": ">=8"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "eslint . && ava"
+  },
+  "dependencies": {
+    "compile-template": "^0.3.1",
+    "debug": "^4.0.1",
+    "js-yaml": "^3.6.1"
+  },
+  "peerDependencies": {
+    "telegraf": "^4.12.2"
+  },
+  "devDependencies": {
+    "ava": "^2.2.0",
+    "eslint": "^6.1.0",
+    "eslint-config-standard": "^13.0.1",
+    "eslint-plugin-ava": "^7.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.0.0",
+    "eslint-plugin-standard": "^4.0.0",
+    "telegraf": "^4.12.2"
+  }
+}
