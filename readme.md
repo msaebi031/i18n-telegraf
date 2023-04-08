@@ -16,6 +16,8 @@ $ npm i i18n-telegraf
 
 ## Example
 
+Structure
+
 ```js
 /* 
 yaml are ok
@@ -34,7 +36,7 @@ en.yaml :
 welcome: Welcome To Bot
 ```
 
-index.js
+bot.js
 
 ```js
 import { Telegraf } from "telegraf";
@@ -91,28 +93,51 @@ app.hears("/start", (ctx) => {
 });
 ```
 
-See full [example](/examples).
+## Change Locales
 
-## User context
-
-Telegraf user context props and functions:
+How to change the language
 
 ```js
-app.use((ctx) => {
-  ctx.i18n.locale(); // Get current locale
-  ctx.i18n.locale(code); // Set current locale
-  ctx.i18n.t(resourceKey, [context]); // Get resource value (context will be used by template engine)
+app.hears("/locales_en", (ctx) => {
+  ctx.i18n.locale("en");
+  return ctx.reply("Changes Succesfuly");
+});
+
+app.hears("/locales_fa", (ctx) => {
+  ctx.i18n.locale("fa");
+  return ctx.reply("با موفقیت تغییر کرد");
 });
 ```
 
-## Helpers
+## Get Locales
+
+Get the language
 
 ```js
-const { match, reply } = require('telegraf-i18n')
+app.hears("/get_locales", (ctx) => {
+  const locales = ctx.i18n.locale(); // Get current locale
+  return ctx.reply(`Your language is fa ${locales}`);
+});
+```
 
-// In case you use custom keyboard with localized labels.
-bot.hears(match('keyboard.foo'), (ctx) => ...)
+## Change part of the text
 
-//Reply helper
-bot.command('help', reply('help'))
+If you have a text that needs to be changed, use the section below
+en.yaml :
+
+```js
+welcome: Welcome ${name} To Bot
+test : has a ${test}
+```
+
+```js
+app.hears("/start", (ctx) => {
+  const message = ctx.i18n.t("welcome", { name: ctx.message.first_name });
+  return ctx.reply(message);
+});
+
+app.hears("/test", (ctx) => {
+  const message = ctx.i18n.t("test", { test: "Any text" });
+  return ctx.reply(message);
+});
 ```
