@@ -2,8 +2,6 @@
 
 Internationalization middleware for [Telegraf](https://www.npmjs.com/package/telegraf).
 
-# !!! In the current version, it only works on yaml and has an error on json
-
 ## Installation
 
 ```js
@@ -16,12 +14,19 @@ Structure
 
 ```js
 /* 
-yaml are ok
+yaml or json are ok
 Example directory structure:
 ├── locales
 │   ├── en.yaml
 │   ├── en-US.yaml
 │   └── fa.yaml
+└── bot.js
+
+or
+├── locales
+│   ├── en.json
+│   ├── en-US.json
+│   └── fa.json
 └── bot.js
 */
 ```
@@ -30,6 +35,12 @@ en.yaml :
 
 ```yaml
 welcome: Welcome To Bot
+```
+
+or en.json :
+
+```json
+{ "welcome": "Welcome To Bot" }
 ```
 
 bot.js
@@ -128,6 +139,16 @@ welcome: Welcome ${name} To Bot
 test: has a ${test}
 ```
 
+or
+en.json :
+
+```json
+{
+  "welcome": "Welcome ${name} To Bot",
+  "test": "has a ${test}"
+}
+```
+
 ```js
 app.hears("/start", (ctx) => {
   const message = ctx.i18n.t("welcome", { name: ctx.message.first_name });
@@ -136,6 +157,25 @@ app.hears("/start", (ctx) => {
 
 app.hears("/test", (ctx) => {
   const message = ctx.i18n.t("test", { test: "Any text" });
+  return ctx.reply(message);
+});
+```
+
+## Reading items in another language
+
+```js
+const Midi18n = new TelegrafI18n({
+  defaultLanguage: "en",
+  allowMissing: false, // Default true
+  directory: path.resolve(__dirname, "locales"),
+});
+
+app.use(i18n.middleware());
+
+app.hears("/start", (ctx) => {
+  // You must use the variable you used for the middleware option
+  // Midi18n.t(local,key,{});
+  const message = Midi18n.t("fa", "welcome");
   return ctx.reply(message);
 });
 ```

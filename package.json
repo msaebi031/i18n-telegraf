@@ -1,10 +1,9 @@
 {
   "name": "i18n-telegraf",
-  "version": "8.5.6",
+  "version": "8.6.6",
   "description": "Telegraf i18n engine",
   "main": "lib/i18n.js",
   "types": "lib/index.d.ts",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/msaebi031/i18n-telegraf.git"
