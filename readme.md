@@ -37,7 +37,9 @@ en.yaml :
 welcome: Welcome To Bot
 ```
 
-or en.json :
+or
+
+en.json :
 
 ```json
 { "welcome": "Welcome To Bot" }
@@ -140,6 +142,7 @@ test: has a ${test}
 ```
 
 or
+
 en.json :
 
 ```json
@@ -163,6 +166,8 @@ app.hears("/test", (ctx) => {
 
 ## Reading items in another language
 
+You can read other languages ​​without setting the language for your locale.
+
 ```js
 const Midi18n = new TelegrafI18n({
   defaultLanguage: "en",
@@ -170,7 +175,7 @@ const Midi18n = new TelegrafI18n({
   directory: path.resolve(__dirname, "locales"),
 });
 
-app.use(i18n.middleware());
+app.use(Midi18n.middleware());
 
 app.hears("/start", (ctx) => {
   // You must use the variable you used for the middleware option
