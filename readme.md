@@ -23,6 +23,7 @@ Example directory structure:
 └── bot.js
 
 or
+
 ├── locales
 │   ├── en.json
 │   ├── en-US.json
