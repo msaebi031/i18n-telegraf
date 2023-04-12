@@ -1,6 +1,6 @@
 {
   "name": "i18n-telegraf",
-  "version": "8.6.6",
+  "version": "8.6.7",
   "description": "Telegraf i18n engine",
   "main": "lib/i18n.js",
   "types": "lib/index.d.ts",
